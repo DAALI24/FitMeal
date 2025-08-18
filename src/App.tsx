@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Landing from "./pages/Landing";
 import BMIAssessment from "./pages/BMIAssessment";
 import Restaurants from "./pages/Restaurants";
+import Nutritionist from "./pages/Nutritionist";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,7 @@ const App = () => (
                 <Route path="/" element={<Landing />} />
                 <Route path="/bmi-assessment" element={<BMIAssessment />} />
                 <Route path="/restaurants" element={<Restaurants />} />
+                <Route path="/nutritionist" element={<Nutritionist />} />
                 <Route path="/orders" element={<Orders />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

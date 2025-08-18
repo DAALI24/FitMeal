@@ -6,7 +6,8 @@ import {
   UtensilsCrossed, 
   Package, 
   User,
-  Menu
+  Menu,
+  Stethoscope
 } from "lucide-react";
 import { useState } from "react";
 
@@ -18,6 +19,7 @@ const Navigation = () => {
     { path: "/", label: "Home", icon: Heart },
     { path: "/bmi-assessment", label: "Health Assessment", icon: Calculator },
     { path: "/restaurants", label: "Restaurants", icon: UtensilsCrossed },
+    { path: "/nutritionist", label: "Nutritionist", icon: Stethoscope },
     { path: "/orders", label: "Orders", icon: Package },
   ];
 
@@ -85,7 +87,7 @@ const Navigation = () => {
                   key={path}
                   to={path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 rounded-lg text-base font-medium transition-all duration-200 flex items-center space-x-2 ${
+                  className={`flex px-3 py-2 rounded-lg text-base font-medium transition-all duration-200 items-center space-x-2 ${
                     isActive(path)
                       ? "bg-gradient-primary text-primary-foreground"
                       : "text-foreground/70 hover:text-foreground hover:bg-muted"
@@ -98,7 +100,7 @@ const Navigation = () => {
               <Link
                 to="/login"
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-base font-medium text-foreground/70 hover:text-foreground hover:bg-muted flex items-center space-x-2"
+                className="flex px-3 py-2 rounded-lg text-base font-medium text-foreground/70 hover:text-foreground hover:bg-muted items-center space-x-2"
               >
                 <User className="h-4 w-4" />
                 <span>Login</span>
