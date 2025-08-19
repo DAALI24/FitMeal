@@ -31,6 +31,7 @@ const BMIAssessment = () => {
     gender: "",
     activityLevel: "",
     goal: "",
+    dietaryPreference: "",
     medicalConditions: "",
     allergies: "",
     currentMedications: ""
@@ -68,7 +69,7 @@ const BMIAssessment = () => {
     e.preventDefault();
     
     // Validate required fields
-    const requiredFields = ['name', 'age', 'height', 'weight', 'gender', 'goal'];
+    const requiredFields = ['name', 'age', 'height', 'weight', 'gender', 'goal', 'dietaryPreference'];
     const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
     
     if (missingFields.length > 0) {
@@ -136,6 +137,10 @@ const BMIAssessment = () => {
                         <span>Activity Level:</span>
                         <span>{formData.activityLevel}</span>
                       </div>
+                      <div className="flex justify-between">
+                        <span>Diet Type:</span>
+                        <span className="text-primary capitalize">{formData.dietaryPreference}</span>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -178,22 +183,42 @@ const BMIAssessment = () => {
                   <div className="grid md:grid-cols-4 gap-4">
                     <div className="p-4 bg-muted rounded-lg">
                       <h4 className="font-semibold text-primary mb-2">Breakfast</h4>
-                      <p className="text-sm">Oatmeal with berries and nuts</p>
+                      <p className="text-sm">
+                        {formData.dietaryPreference === 'vegetarian' || formData.dietaryPreference === 'vegan' 
+                          ? 'Oatmeal with berries and nuts' 
+                          : 'Scrambled eggs with whole grain toast'}
+                      </p>
                       <Badge variant="secondary" className="mt-2">350 kcal</Badge>
                     </div>
                     <div className="p-4 bg-muted rounded-lg">
                       <h4 className="font-semibold text-primary mb-2">Lunch</h4>
-                      <p className="text-sm">Grilled chicken salad with quinoa</p>
+                      <p className="text-sm">
+                        {formData.dietaryPreference === 'vegetarian' 
+                          ? 'Paneer tikka with quinoa salad'
+                          : formData.dietaryPreference === 'vegan'
+                          ? 'Chickpea curry with brown rice'
+                          : 'Grilled chicken salad with quinoa'}
+                      </p>
                       <Badge variant="secondary" className="mt-2">450 kcal</Badge>
                     </div>
                     <div className="p-4 bg-muted rounded-lg">
                       <h4 className="font-semibold text-primary mb-2">Snack</h4>
-                      <p className="text-sm">Greek yogurt with fruits</p>
+                      <p className="text-sm">
+                        {formData.dietaryPreference === 'vegan'
+                          ? 'Almond yogurt with fruits'
+                          : 'Greek yogurt with fruits'}
+                      </p>
                       <Badge variant="secondary" className="mt-2">200 kcal</Badge>
                     </div>
                     <div className="p-4 bg-muted rounded-lg">
                       <h4 className="font-semibold text-primary mb-2">Dinner</h4>
-                      <p className="text-sm">Baked salmon with vegetables</p>
+                      <p className="text-sm">
+                        {formData.dietaryPreference === 'vegetarian'
+                          ? 'Grilled tofu with roasted vegetables'
+                          : formData.dietaryPreference === 'vegan'
+                          ? 'Lentil curry with steamed broccoli'
+                          : 'Baked salmon with vegetables'}
+                      </p>
                       <Badge variant="secondary" className="mt-2">400 kcal</Badge>
                     </div>
                   </div>
@@ -305,6 +330,28 @@ const BMIAssessment = () => {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="other" id="other" />
                       <Label htmlFor="other">Other</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                <div>
+                  <Label>Dietary Preference *</Label>
+                  <RadioGroup
+                    value={formData.dietaryPreference}
+                    onValueChange={(value) => handleInputChange('dietaryPreference', value)}
+                    className="flex space-x-6 mt-2"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="vegetarian" id="vegetarian" />
+                      <Label htmlFor="vegetarian">Vegetarian</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="non-vegetarian" id="non-vegetarian" />
+                      <Label htmlFor="non-vegetarian">Non-Vegetarian</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="vegan" id="vegan" />
+                      <Label htmlFor="vegan">Vegan</Label>
                     </div>
                   </RadioGroup>
                 </div>
