@@ -8,11 +8,21 @@ import Landing from "./pages/Landing";
 import BMIAssessment from "./pages/BMIAssessment";
 import Restaurants from "./pages/Restaurants";
 import Nutritionist from "./pages/Nutritionist";
+import GymInstructors from "./pages/GymInstructors";
+import AdminDashboard from "./pages/AdminDashboard";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,    // 5 min
+      gcTime: 1000 * 60 * 10,      // 10 min
+      retry: 1,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -22,20 +32,25 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/*" element={
-            <>
-              <Navigation />
-              <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/bmi-assessment" element={<BMIAssessment />} />
-                <Route path="/restaurants" element={<Restaurants />} />
-                <Route path="/nutritionist" element={<Nutritionist />} />
-                <Route path="/orders" element={<Orders />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </>
-          } />
+          <Route
+            path="/*"
+            element={
+              <>
+                <Navigation />
+                <Routes>
+                  <Route path="/"                  element={<Landing />} />
+                  <Route path="/bmi-assessment"    element={<BMIAssessment />} />
+                  <Route path="/restaurants"       element={<Restaurants />} />
+                  <Route path="/nutritionist"      element={<Nutritionist />} />
+                  <Route path="/gym-instructors"   element={<GymInstructors />} />
+                  <Route path="/admin"             element={<AdminDashboard />} />
+                  <Route path="/orders"            element={<Orders />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*"                  element={<NotFound />} />
+                </Routes>
+              </>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
