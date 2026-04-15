@@ -1,45 +1,66 @@
-**Use your preferred IDE**
+# FitMeal
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+AI-powered nutrition, gym coaching, and food delivery platform built with React + TypeScript.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Features
 
-Follow these steps:
+- **AI Diet Plans** — Personalized meal plans based on BMI, medical conditions, and fitness goals
+- **Restaurants & Cloud Kitchens** — Order from 10+ partner restaurants or 3 macro-tracked delivery-only kitchens
+- **Gym Instructors** — Browse 8+ verified coaches filtered by gender, specialty, and experience; book and pay via Razorpay
+- **Nutritionist Chat** — Real-time consultation with certified nutritionists
+- **Admin Dashboard** — Restaurant owners and gym instructors manage listings, pricing, and analytics
+- **Razorpay Payments** — Secure checkout for food orders and coaching sessions (test mode; swap key for production)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Tech Stack
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **React 18** + **TypeScript 5** (strict mode)
+- **Vite 5** + **SWC** for fast builds
+- **Tailwind CSS 3** + **shadcn/ui** (Radix primitives)
+- **TanStack React Query v5** for server state
+- **React Hook Form** + **Zod** for forms and validation
+- **React Router v6** for routing
+- **Razorpay** for payments (test mode)
+- **localStorage** API layer (ready to swap to Supabase / Express)
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Getting Started
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+App runs at `http://localhost:8080`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Payment Setup
 
-**Use GitHub Codespaces**
+Replace the test key in [`src/lib/api.ts`](src/lib/api.ts):
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```ts
+key: "rzp_test_placeholder_key",  // replace with your Razorpay key_id
+```
 
-## What technologies are used for this project?
+Get your key from the [Razorpay Dashboard](https://dashboard.razorpay.com/).
 
-This project is built with:
+## Project Structure
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+src/
+├── components/       # Shared UI components (Navigation, shadcn/ui)
+├── pages/            # Route-level components
+│   ├── Landing.tsx
+│   ├── BMIAssessment.tsx
+│   ├── Restaurants.tsx      # + Cloud Kitchens
+│   ├── GymInstructors.tsx
+│   ├── AdminDashboard.tsx
+│   ├── Nutritionist.tsx
+│   └── Orders.tsx
+├── lib/
+│   └── api.ts        # Service layer (localStorage-backed, swappable)
+├── types/
+│   └── index.ts      # Shared TypeScript interfaces
+└── index.css         # Design system tokens
+```
+
+## License
+
+MIT © DAALI24
