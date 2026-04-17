@@ -11,12 +11,17 @@ import {
   Stethoscope,
   Dumbbell,
   ShieldCheck,
+  Brain,
+  ScanLine,
+  LayoutDashboard,
 } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
   { path: "/",               label: "Home",             icon: Heart },
-  { path: "/bmi-assessment", label: "Health Check",     icon: Calculator },
+  { path: "/ai-analysis",    label: "AI Analysis",      icon: Brain },
+  { path: "/food-scanner",   label: "Food Scanner",     icon: ScanLine },
+  { path: "/dashboard",      label: "Dashboard",        icon: LayoutDashboard },
   { path: "/restaurants",    label: "Restaurants",      icon: UtensilsCrossed },
   { path: "/nutritionist",   label: "Nutritionist",     icon: Stethoscope },
   { path: "/gym-instructors",label: "Gym Coaches",      icon: Dumbbell },

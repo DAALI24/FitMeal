@@ -166,6 +166,105 @@ declare global {
   }
 }
 
+// ─── AI Analysis ─────────────────────────────────────────────────────────────
+
+export type BodyType = "Ectomorph" | "Mesomorph" | "Endomorph" | "Ecto-Mesomorph" | "Meso-Endomorph";
+export type FitnessGoal = "weight_loss" | "muscle_gain" | "maintenance" | "athletic_performance" | "flexibility";
+export type ActivityLevel = "sedentary" | "lightly_active" | "moderately_active" | "very_active" | "extremely_active";
+
+export interface UserBioData {
+  name: string;
+  age: number;
+  gender: Gender;
+  heightCm: number;
+  weightKg: number;
+  activityLevel: ActivityLevel;
+  goal: FitnessGoal;
+  medicalConditions: string;
+  photoBase64: string;
+  photoMimeType: string;
+}
+
+export interface WorkoutDay {
+  day: string;
+  focus: string;
+  exercises: Array<{
+    name: string;
+    sets: number;
+    reps: string;
+    rest: string;
+    notes: string;
+  }>;
+  duration: string;
+  intensity: "Low" | "Medium" | "High";
+}
+
+export interface MealPlanDay {
+  day: string;
+  breakfast: { name: string; calories: number; protein: number; carbs: number; fat: number };
+  lunch: { name: string; calories: number; protein: number; carbs: number; fat: number };
+  dinner: { name: string; calories: number; protein: number; carbs: number; fat: number };
+  snacks: { name: string; calories: number; protein: number; carbs: number; fat: number };
+  totalCalories: number;
+}
+
+export interface AIBodyAnalysis {
+  bodyType: BodyType;
+  bmiCategory: string;
+  fitnessLevel: string;
+  dailyCalorieTarget: number;
+  tdee: number;
+  macros: { protein: number; carbs: number; fat: number };
+  workoutPlan: WorkoutDay[];
+  mealPlan: MealPlanDay[];
+  goals: string[];
+  insights: string[];
+  estimatedTimeline: string;
+  hydrationTarget: number;
+  sleepRecommendation: string;
+  analysisDate: string;
+}
+
+export interface FoodScanResult {
+  foodName: string;
+  portionSize: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  fiber: number;
+  sugar: number;
+  healthScore: number;
+  insights: string[];
+  micronutrients: string[];
+  timestamp: string;
+  imageBase64?: string;
+}
+
+export interface DailyNutritionLog {
+  date: string;
+  entries: FoodScanResult[];
+  totalCalories: number;
+  totalProtein: number;
+  totalCarbs: number;
+  totalFat: number;
+  waterIntakeMl: number;
+}
+
+export interface WeightEntry {
+  date: string;
+  weightKg: number;
+}
+
+export interface UserDashboardData {
+  bioData: UserBioData | null;
+  analysis: AIBodyAnalysis | null;
+  nutritionLogs: DailyNutritionLog[];
+  weightHistory: WeightEntry[];
+  currentStreak: number;
+  lastUpdated: string;
+}
+
 // ─── API response wrappers ────────────────────────────────────────────────────
 
 export interface ApiResponse<T> {

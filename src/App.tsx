@@ -13,6 +13,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import AIAnalysis from "./pages/AIAnalysis";
+import FoodScanner from "./pages/FoodScanner";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +48,9 @@ const App = () => (
                   <Route path="/gym-instructors"   element={<GymInstructors />} />
                   <Route path="/admin"             element={<AdminDashboard />} />
                   <Route path="/orders"            element={<Orders />} />
+                  <Route path="/ai-analysis"       element={<AIAnalysis />} />
+                  <Route path="/food-scanner"      element={<FoodScanner />} />
+                  <Route path="/dashboard"         element={<Dashboard />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*"                  element={<NotFound />} />
                 </Routes>
